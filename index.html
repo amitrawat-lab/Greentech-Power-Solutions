@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- This line is crucial for making the website responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greentech Power Solutions - Premier Solar Energy Provider</title>
+    <!-- Google Fonts for a modern look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ALL CSS STYLES ARE PLACED HERE -->
+    <style>
+        /* --- Brand Color Palette & Global Styles --- */
+        :root {
+            --brand-green: #6ECB43; /* Bright, eco green */
+            --brand-orange: #F58634; /* Energetic orange */
+            --brand-blue: #0072BB;   /* Professional blue */
+            --dark-text: #2c3e50;
+            --light-text: #ffffff;
+            --background-light: #f9fafb;
+            --background-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            background-color: var(--background-light);
+            color: var(--dark-text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 80px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--brand-blue);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin-top: -40px;
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+            color: #7f8c8d;
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background: var(--light-text);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo img {
+            height: 60px; /* Adjust as needed */
+            width: auto;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--brand-orange);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link a:hover, .nav-link a.active {
+            color: var(--brand-blue);
+        }
+        
+        .nav-link a:hover::after, .nav-link a.active::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none; /* Hidden on desktop */
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .nav-toggle svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            /* This public URL is used so the preview works. */
+            /* Replace it with your own image file when you publish your site. */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.pexels.com/photos/1750276/pexels-photo-1750276.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center/cover;
+            height: 85vh;
+            color: var(--light-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-content .highlight {
+            color: var(--brand-orange);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            background: var(--brand-orange);
+            color: var(--light-text);
+            padding: 18px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(245, 134, 52, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(245, 134, 52, 0.6);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Services Section --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 35px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .service-card .icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background-color: var(--brand-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+        }
+        
+        .service-card .icon svg {
+             width: 36px;
+             height: 36px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--brand-blue);
+            margin-bottom: 15px;
+        }
+
+        /* --- Why Choose Us Section --- */
+        .why-us {
+            background: var(--background-white);
+        }
+        
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+        
+        .feature-item .icon {
+             font-size: 3rem;
+             color: var(--brand-orange);
+             margin-bottom: 15px;
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        /* --- AI Savings Estimator --- */
+        .ai-calculator {
+            background: var(--background-white);
+            border-radius: 12px;
+            padding: 40px;
+        }
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 20px;
+            align-items: end;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group label {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .form-group input, .form-group select {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .calculator-result {
+            background: var(--background-light);
+            border-radius: 8px;
+            padding: 30px;
+            min-height: 100px;
+        }
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .loader div {
+            width: 10px;
+            height: 10px;
+            background-color: var(--brand-blue);
+            border-radius: 100%;
+            display: inline-block;
+            animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            margin: 0 4px;
+        }
+        .loader .bounce1 { animation-delay: -0.32s; }
+        .loader .bounce2 { animation-delay: -0.16s; }
+        @keyframes sk-bouncedelay {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        /* --- AI Expert FAB & Modal --- */
+        .ai-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--brand-blue);
+            color: var(--light-text);
+            padding: 15px 20px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .ai-fab:hover {
+            transform: scale(1.05);
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: var(--background-white);
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 {
+            font-size: 1.5rem;
+            color: var(--brand-blue);
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #95a5a6;
+        }
+        .modal-body textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            min-height: 80px;
+            margin-bottom: 15px;
+        }
+        .modal-footer {
+            text-align: right;
+        }
+        .modal-result {
+            margin-top: 20px;
+            background: var(--background-light);
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 50px;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--dark-text);
+            color: #bdc3c7;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        
+        .footer-logo img {
+            height: 70px;
+            margin-bottom: 20px;
+        }
+        
+        .footer p {
+             max-width: 600px;
+             margin: 0 auto 20px;
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            text-align: left;
+        }
+        .contact-item {
+            max-width: 280px;
+        }
+        .contact-item a {
+            color: var(--brand-orange);
+            text-decoration: none;
+            transition: text-decoration 0.3s ease;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer .copyright {
+             margin-top: 30px;
+             border-top: 1px solid #34495e;
+             padding-top: 20px;
+             font-size: 0.9rem;
+        }
+
+        /* --- Responsive Design for Mobile and Tablets --- */
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .container {
+                padding: 60px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 300px;
+                background: var(--background-white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 40px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.4s ease-in-out;
+                z-index: 1000;
+            }
+
+            .nav-links.nav-active {
+                right: 0;
+            }
+            
+            .nav-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator-form .cta-button {
+                width: 100%;
+            }
+
+            .ai-fab span {
+                display: none;
+            }
+
+            .ai-fab {
+                padding: 15px;
+            }
+
+            .footer-contact {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <!-- Replace with your logo file -->
+                <img src="IMG-20250906-WA0001.jpg" alt="Greentech Power Solutions Logo">
+            </a>
+            <!-- UPDATED NAVIGATION LINKS -->
+            <ul class="nav-links">
+                <li class="nav-link"><a href="index.html" class="active">Home</a></li>
+                <li class="nav-link"><a href="about.html">About Us</a></li>
+                <li class="nav-link"><a href="services.html">Services</a></li>
+                <li class="nav-link"><a href="projects.html">Projects</a></li>
+                <li class="nav-link"><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Illuminating Futures with <span class="highlight">Renewable Energy</span></h1>
+                <p>Your trusted local partner for high-efficiency solar panel installations and sustainable power solutions.</p>
+                <a href="contact.html" class="cta-button">Get a Free Solar Quote</a>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="container">
+            <h2 class="section-title">Comprehensive Solar Solutions</h2>
+            <p class="section-subtitle">We handle every step of your transition to clean energy.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h7.5" /></svg>
+                    </div>
+                    <h3>Residential Solar</h3>
+                    <p>Power your home with clean energy. We design and install custom rooftop solar systems to reduce your electricity bills significantly.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h6M9 11.25h6m-6 4.5h6M6.75 21v-2.25a2.25 2.25 0 012.25-2.25h6a2.25 2.25 0 012.25 2.25V21" /></svg>
+                    </div>
+                    <h3>Commercial & Industrial</h3>
+                    <p>Lower your operating costs and meet sustainability goals with our powerful and reliable solar solutions for businesses of any size.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5h.375c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125H21M4.5 10.5a2.25 2.25 0 00-2.25 2.25v2.25a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 15v-2.25a2.25 2.25 0 00-2.25-2.25h-15z" /></svg>
+                    </div>
+                    <h3>Battery Storage</h3>
+                    <p>Gain energy independence and ensure uninterrupted power supply, even during outages, with our advanced battery backup systems.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="container why-us">
+            <h2 class="section-title">Why Choose Greentech?</h2>
+            <p class="section-subtitle">Your reliable partner in the journey towards sustainable energy.</p>
+            <div class="why-us-grid">
+                <div class="feature-item">
+                    <div class="icon">🏆</div>
+                    <h4>Tier-1 Quality Panels</h4>
+                    <p>We use only the highest-grade solar panels and inverters to ensure maximum efficiency and longevity.</p>
+                </div>
+                 <div class="feature-item">
+                    <div class="icon">🛠️</div>
+                    <h4>Expert Installation</h4>
+                    <p>Our certified and experienced technicians ensure a safe, secure, and seamless installation process.</p>
+                </div>
+                 <div class="feature-item">
+                    <div class="icon">🤝</div>
+                    <h4>Dedicated Local Support</h4>
+                    <p>As a local company, we provide dedicated, long-term support and maintenance you can count on.</p>
+                </div>
+                 <div class="feature-item">
+                    <div class="icon">💰</div>
+                    <h4>Transparent Pricing</h4>
+                    <p>Receive a clear, detailed, and honest quote with no hidden fees. We help you maximize your ROI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Savings Estimator Section -->
+        <section class="container">
+            <h2 class="section-title">AI-Powered Savings Estimator ✨</h2>
+            <p class="section-subtitle">Get a personalized estimate of your potential solar savings in seconds.</p>
+            <div class="ai-calculator">
+                <div class="calculator-form">
+                    <div class="form-group">
+                        <label for="monthly-bill">Average Monthly Electricity Bill (₹)</label>
+                        <input type="number" id="monthly-bill" placeholder="e.g., 3000">
+                    </div>
+                    <div class="form-group">
+                        <label for="roof-type">Primary Roof Type</label>
+                        <select id="roof-type">
+                            <option value="Flat RCC">Flat RCC</option>
+                            <option value="Sloped/Pitched">Sloped/Pitched</option>
+                            <option value="Metal Sheet">Metal Sheet</option>
+                            <option value="Not Sure">Not Sure</option>
+                        </select>
+                    </div>
+                    <button class="cta-button" id="calculate-btn">Calculate Savings</button>
+                </div>
+                <div class="calculator-result" id="calculator-result">
+                    Enter your details above to see your estimated savings report.
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+             <!-- Replace with your logo file -->
+            <img src="IMG-20250906-WA0001.jpg" alt="Greentech Power Solutions Logo">
+        </div>
+        <p>Illuminating Futures With Renewable Energy. Proudly serving our communities with top-quality solar installations and exceptional customer service.</p>
+        
+        <div class="footer-contact">
+            <div class="contact-item">
+                <strong>Address:</strong><br> 
+                Madhi Colony Chaurash <br> Tehri Garhwal Uttarakhand<br> India
+            </div>
+            <div class="contact-item">
+                <strong>Contact:</strong><br> 
+                <a href="tel:+919720716581">+91 97207-16581</a><br>
+                <a href="tel:+918126773275">+91 81267-73275</a>
+            </div>
+            <div class="contact-item">
+                <strong>Email:</strong><br> 
+                <a href="mailto:solar@greentechpowersolutioncom.com">solar@greentechpowersolutioncom.com</a>
+            </div>
+        </div>
+
+        <p class="copyright">&copy; 2025 Greentech Power Solutions. All Rights Reserved.</p>
+    </footer>
+
+    <!-- AI Expert FAB -->
+    <div class="ai-fab" id="ai-fab">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path></svg>
+        <span>Ask Our AI Expert ✨</span>
+    </div>
+
+    <!-- AI Expert Modal -->
+    <div class="modal-overlay" id="ai-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Ask a Question</h3>
+                <button class="modal-close" id="modal-close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <textarea id="ai-question" placeholder="e.g., How much maintenance do solar panels need? or What are the current subsidies?"></textarea>
+                <div class="modal-footer">
+                     <button class="cta-button" id="ask-ai-btn">Get Answer</button>
+                </div>
+                <div class="modal-result" id="modal-result">
+                    Your answer will appear here.
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- ALL JAVASCRIPT IS PLACED HERE -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // --- Mobile Navigation Logic ---
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            
+            // Toggle hamburger icon to close icon
+            if (navLinks.classList.contains('nav-active')) {
+                navToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
+            } else {
+                navToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`;
+            }
+        });
+
+        // --- Gemini API Call Logic ---
+        const API_KEY = ""; // Leave empty, handled by the environment
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+        
+        const callGemini = async (prompt, resultElement) => {
+            resultElement.innerHTML = `<div class="loader"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+            };
+
+            let retries = 3;
+            let delay = 1000;
+
+            while (retries > 0) {
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        // Basic markdown to HTML conversion
+                        let htmlResponse = candidate.content.parts[0].text;
+                        htmlResponse = htmlResponse.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>'); // Bold
+                        htmlResponse = htmlResponse.replace(/\n\s*-\s/g, '<br>• '); // List items
+                        htmlResponse = htmlResponse.replace(/\n/g, '<br>'); // Newlines
+
+                        resultElement.innerHTML = htmlResponse;
+                        return; // Success, exit loop
+                    } else {
+                         throw new Error("Invalid response structure from API.");
+                    }
+                } catch (error) {
+                    console.error("API Call Error:", error);
+                    retries--;
+                    if (retries === 0) {
+                        resultElement.textContent = 'Sorry, I am unable to provide an estimate at the moment. Please try again later.';
+                    } else {
+                        await new Promise(res => setTimeout(res, delay));
+                        delay *= 2; // Exponential backoff
+                    }
+                }
+            }
+        };
+
+        // --- Savings Calculator Logic ---
+        const calculateBtn = document.getElementById('calculate-btn');
+        const monthlyBillInput = document.getElementById('monthly-bill');
+        const roofTypeInput = document.getElementById('roof-type');
+        const calculatorResultEl = document.getElementById('calculator-result');
+
+        calculateBtn.addEventListener('click', () => {
+            const bill = monthlyBillInput.value;
+            const roof = roofTypeInput.value;
+
+            if (!bill || bill <= 0) {
+                calculatorResultEl.textContent = 'Please enter a valid monthly electricity bill.';
+                return;
+            }
+
+            const prompt = `
+                Act as a solar energy consultant for Greentech Power Solutions, a company based in Uttarakhand, India.
+                A potential customer has an average monthly electricity bill of INR ${bill} and their roof type is "${roof}".
+                
+                Provide a concise, encouraging, and easy-to-understand report for them. The current year is 2025.
+                The report should include the following sections, using current estimations for a hilly region like Tehri Garhwal, Uttarakhand:
+                - **Recommended System Size:** Estimate the solar system capacity in kilowatts (kW) needed to cover their bill. Assume an average of 4 units (kWh) of generation per kW per day and a cost of electricity of 8 INR/unit.
+                - **Estimated Monthly Savings:** Calculate their potential savings per month.
+                - **Estimated Payback Period:** Estimate the time it will take for the savings to cover the initial investment. Assume a system cost of INR 60,000 per kW and consider the latest government subsidies available under the PM Surya Ghar scheme (approx. INR 18,000 per kW for systems up to 3 kW, and a max of INR 78,000 for larger systems).
+                - **Next Steps:** Briefly tell them what to do next.
+
+                Format the response using Markdown. Use bolding for headings and bullet points for the main items.
+            `;
+
+            callGemini(prompt, calculatorResultEl);
+        });
+
+        // --- AI Expert Modal Logic ---
+        const fab = document.getElementById('ai-fab');
+        const modal = document.getElementById('ai-modal');
+        const closeModalBtn = document.getElementById('modal-close-btn');
+        const askAiBtn = document.getElementById('ask-ai-btn');
+        const questionInput = document.getElementById('ai-question');
+        const modalResultEl = document.getElementById('modal-result');
+
+        fab.addEventListener('click', () => {
+            modal.classList.add('show');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
+
+        askAiBtn.addEventListener('click', () => {
+            const question = questionInput.value;
+            if (!question.trim()) {
+                modalResultEl.textContent = 'Please enter a question.';
+                return;
+            }
+
+            const prompt = `
+                You are a friendly and knowledgeable AI assistant for "Greentech Power Solutions," a solar installation company based in India.
+                A user has asked the following question: "${question}"
+
+                Please provide a clear, helpful, and concise answer. Keep the tone professional but approachable. If the question is outside the scope of solar energy, politely state that you can only answer solar-related questions.
+            `;
+            
+            callGemini(prompt, modalResultEl);
+        });
+    });
+</script>
+
+</body>
+</html>
+

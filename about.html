@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Greentech Power Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ALL CSS STYLES ARE PLACED HERE -->
+    <style>
+        /* --- Brand Color Palette & Global Styles (Same as Homepage) --- */
+        :root {
+            --brand-green: #6ECB43;
+            --brand-orange: #F58634;
+            --brand-blue: #0072BB;
+            --dark-text: #2c3e50;
+            --light-text: #ffffff;
+            --background-light: #f9fafb;
+            --background-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            background-color: var(--background-light);
+            color: var(--dark-text);
+        }
+        .container { max-width: 1200px; margin: auto; padding: 80px 20px; }
+        
+        /* --- Re-usable Page Header --- */
+        .page-header {
+            background: var(--brand-blue);
+            color: var(--light-text);
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .page-header h1 { font-size: 3rem; font-weight: 700; }
+        .page-header p { font-size: 1.2rem; max-width: 700px; margin: 10px auto 0; }
+
+        /* --- Header & Navigation (Same as Homepage) --- */
+        .header {
+            background: var(--light-text);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-logo img { height: 60px; width: auto; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-link a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--brand-orange);
+            transition: width 0.3s ease;
+        }
+        .nav-link a:hover, .nav-link a.active { color: var(--brand-blue); }
+        .nav-link a:hover::after, .nav-link a.active::after { width: 100%; }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
+        .nav-toggle svg { width: 30px; height: 30px; }
+        
+        /* --- About Us Content --- */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .about-text h2 {
+            font-size: 2.2rem;
+            color: var(--brand-blue);
+            margin-bottom: 20px;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* --- CTA Section --- */
+        .cta-section { text-align: center; background-color: var(--background-white); }
+        .cta-section h2 { font-size: 2.2rem; margin-bottom: 20px; color: var(--brand-blue); }
+        .cta-button {
+            background: var(--brand-orange); color: var(--light-text); padding: 18px 40px; text-decoration: none;
+            border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(245, 134, 52, 0.4); border: none; cursor: pointer; display: inline-block;
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(245, 134, 52, 0.6); }
+
+        /* --- Footer (Same as Homepage) --- */
+        .footer {
+            background-color: var(--dark-text); color: #bdc3c7; padding: 60px 20px; text-align: center;
+        }
+        .footer-logo img { height: 70px; margin-bottom: 20px; }
+        .footer p { max-width: 600px; margin: 0 auto 20px; }
+        .footer-contact { display: flex; justify-content: center; gap: 40px; margin: 30px 0; flex-wrap: wrap; text-align: left; }
+        .contact-item { max-width: 280px; }
+        .contact-item a { color: var(--brand-orange); text-decoration: none; transition: text-decoration 0.3s ease; }
+        .contact-item a:hover { text-decoration: underline; }
+        .footer .copyright { margin-top: 30px; border-top: 1px solid #34495e; padding-top: 20px; font-size: 0.9rem; }
+
+        /* --- Responsive Design (Same as Homepage) --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 300px; background: var(--background-white);
+                flex-direction: column; justify-content: center; align-items: center; gap: 40px; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.4s ease-in-out; z-index: 1000;
+            }
+            .nav-links.nav-active { right: 0; }
+            .nav-toggle { display: block; }
+            .page-header h1 { font-size: 2.5rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .about-image { grid-row: 1; margin-bottom: 30px; }
+            .footer-contact { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <img src="IMG-20250906-WA0001.jpg" alt="Greentech Power Solutions Logo">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-link"><a href="index.html">Home</a></li>
+                <li class="nav-link"><a href="about.html" class="active">About Us</a></li>
+                <li class="nav-link"><a href="services.html">Services</a></li>
+                <li class="nav-link"><a href="projects.html">Projects</a></li>
+                <li class="nav-link"><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>About Greentech Power Solutions</h1>
+            <p>Your trusted local partner in the renewable energy revolution.</p>
+        </section>
+
+        <!-- About Us Content -->
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Our Story</h2>
+                    <p>Founded with a passion for sustainability, Greentech Power Solutions was born from a desire to make clean energy accessible to everyone in Uttarakhand and beyond. We saw the immense potential of solar power in our sunny region and set out to build a company that prioritizes quality, transparency, and unparalleled customer service.</p>
+                    <p>From humble beginnings, we have grown into a leading solar provider, yet our core values remain the same: to empower our community, protect our environment, and illuminate a brighter, greener future for generations to come.</p>
+                    <h2>Our Mission</h2>
+                    <p>Our mission is to deliver high-performance, reliable, and affordable solar energy solutions that provide long-term value to our customers. We are committed to using top-tier technology, employing the best local talent, and ensuring every installation is a benchmark of quality and safety.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A modern office building interior representing the company's professionalism.">
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <section class="container cta-section">
+            <h2>Join Us On Our Mission</h2>
+            <p>Become a part of the clean energy movement today.</p>
+            <a href="contact.html" class="cta-button">Get Your Free Quote</a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="IMG-20250906-WA0001.jpg" alt="Greentech Power Solutions Logo">
+        </div>
+        <p>Illuminating Futures With Renewable Energy. Proudly serving our communities with top-quality solar installations and exceptional customer service.</p>
+        <div class="footer-contact">
+            <div class="contact-item">
+                <strong>Address:</strong><br> Madhi Colony, Chaurash, Tehri Garhwal, Uttarakhand, India
+            </div>
+            <div class="contact-item">
+                <strong>Contact:</strong><br> 
+                <a href="tel:+919720716581">+91 9720716581</a><br>
+                <a href="tel:+918126773275">+91 8126773275</a>
+            </div>
+            <div class="contact-item">
+                <strong>Email:</strong><br> 
+                <a href="mailto:solar@greentechpowersolutioncom.com">solar@greentechpowersolutioncom.com</a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2025 Greentech Power Solutions. All Rights Reserved.</p>
+    </footer>
+
+<!-- JAVASCRIPT FOR MOBILE MENU -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            
+            if (navLinks.classList.contains('nav-active')) {
+                navToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
+            } else {
+                navToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`;
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+

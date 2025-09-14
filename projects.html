@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - Greentech Power Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- ALL CSS STYLES ARE PLACED HERE -->
+    <style>
+        /* --- Brand Color Palette & Global Styles (Same as other pages) --- */
+        :root {
+            --brand-green: #6ECB43;
+            --brand-orange: #F58634;
+            --brand-blue: #0072BB;
+            --dark-text: #2c3e50;
+            --light-text: #ffffff;
+            --background-light: #f9fafb;
+            --background-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            background-color: var(--background-light);
+            color: var(--dark-text);
+        }
+        .container { max-width: 1200px; margin: auto; padding: 80px 20px; }
+        
+        /* --- Re-usable Page Header --- */
+        .page-header {
+            background: var(--brand-blue);
+            color: var(--light-text);
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .page-header h1 { font-size: 3rem; font-weight: 700; }
+        .page-header p { font-size: 1.2rem; max-width: 700px; margin: 10px auto 0; }
+
+        /* --- Header & Navigation (Same as other pages) --- */
+        .header {
+            background: var(--light-text);
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .nav {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-logo img { height: 60px; width: auto; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-link a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            padding: 5px 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--brand-orange);
+            transition: width 0.3s ease;
+        }
+        .nav-link a:hover, .nav-link a.active { color: var(--brand-blue); }
+        .nav-link a:hover::after, .nav-link a.active::after { width: 100%; }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
+        .nav-toggle svg { width: 30px; height: 30px; }
+
+        /* --- Project Gallery Styling --- */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background-color: var(--background-white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .project-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+        .project-info {
+            padding: 25px;
+        }
+        .project-info h3 {
+            font-size: 1.5rem;
+            color: var(--brand-blue);
+            margin-bottom: 10px;
+        }
+        .project-info p {
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        /* --- CTA Section --- */
+        .cta-section { text-align: center; background-color: var(--background-white); }
+        .cta-section h2 { font-size: 2.2rem; margin-bottom: 20px; color: var(--brand-blue); }
+        .cta-button {
+            background: var(--brand-orange); color: var(--light-text); padding: 18px 40px; text-decoration: none;
+            border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(245, 134, 52, 0.4); border: none; cursor: pointer; display: inline-block;
+        }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(245, 134, 52, 0.6); }
+
+        /* --- Footer (Same as other pages) --- */
+        .footer {
+            background-color: var(--dark-text); color: #bdc3c7; padding: 60px 20px; text-align: center;
+        }
+        .footer-logo img { height: 70px; margin-bottom: 20px; }
+        .footer p { max-width: 600px; margin: 0 auto 20px; }
+        .footer-contact { display: flex; justify-content: center; gap: 40px; margin: 30px 0; flex-wrap: wrap; text-align: left; }
+        .contact-item { max-width: 280px; }
+        .contact-item a { color: var(--brand-orange); text-decoration: none; transition: text-decoration 0.3s ease; }
+        .contact-item a:hover { text-decoration: underline; }
+        .footer .copyright { margin-top: 30px; border-top: 1px solid #34495e; padding-top: 20px; font-size: 0.9rem; }
+
+        /* --- Responsive Design (Same as other pages) --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 300px; background: var(--background-white);
+                flex-direction: column; justify-content: center; align-items: center; gap: 40px; box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.4s ease-in-out; z-index: 1000;
+            }
+            .nav-links.nav-active { right: 0; }
+            .nav-toggle { display: block; }
+            .page-header h1 { font-size: 2.5rem; }
+            .project-gallery { grid-template-columns: 1fr; }
+            .footer-contact { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="nav-logo">
+                <img src="IMG-20250906-WA0001.jpg" alt="Greentech Power Solutions Logo">
+            </a>
+            <ul class="nav-links">
+                <li class="nav-link"><a href="index.html">Home</a></li>
+                <li class="nav-link"><a href="about.html">About Us</a></li>
+                <li class="nav-link"><a href="services.html">Services</a></li>
+                <li class="nav-link"><a href="projects.html" class="active">Projects</a></li>
+                <li class="nav-link"><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>Our Projects</h1>
+            <p>A showcase of our commitment to quality, efficiency, and customer satisfaction.</p>
+        </section>
+
+        <!-- Project Gallery Container -->
+        <div class="container">
+            <div class="project-gallery">
+                <!-- Project Card 1: Replace with your project details -->
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/1183021/pexels-photo-1183021.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="A residential solar panel installation on a tiled roof.">
+                    <div class="project-info">
+                        <h3>3kW Residential System</h3>
+                        <p>A rooftop installation for a family home in Tehri, designed to cover 100% of their energy needs and provide significant savings.</p>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Replace with your project details -->
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/3822623/pexels-photo-3822623.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Large solar installation on a commercial building.">
+                    <div class="project-info">
+                        <h3>50kW Commercial Rooftop</h3>
+                        <p>A large-scale installation for a local business, drastically reducing their operating costs and carbon footprint.</p>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Replace with your project details -->
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/1672323/pexels-photo-1672323.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Solar panels on a rural farmhouse roof.">
+                    <div class="project-info">
+                        <h3>8kW System with Battery Backup</h3>
+                        <p>A residential system providing energy independence and reliable backup power during grid outages for a rural home.</p>
+                    </div>
+                </div>
+                
+                <!-- Project Card 4: Add more cards as needed -->
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/2877543/pexels-photo-2877543.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Solar panels on an apartment complex roof.">
+                    <div class="project-info">
+                        <h3>Community Solar Project</h3>
+                        <p>An installation for a housing society, providing collective savings and clean energy for all residents.</p>
+                    </div>
+                </div>
+                
+                 <!-- Project Card 5: Updated to Solar Water Heaters -->
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/9891633/pexels-photo-9891633.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Solar water heater panels installed on a residential roof.">
+                    <div class="project-info">
+                        <h3>Solar Water Heaters</h3>
+                        <p>An efficient solar water heating system installed for a family, providing hot water year-round while reducing electricity consumption.</p>
+                    </div>
+                </div>
+                
+                 <!-- Project Card 6: Add more cards as needed -->
+                <div class="project-card">
+                    <img src="https://images.pexels.com/photos/356065/pexels-photo-356065.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Close-up of a technician cleaning solar panels.">
+                    <div class="project-info">
+                        <h3>Industrial Maintenance Contract</h3>
+                        <p>Ongoing operations and maintenance for a large industrial plant, maximizing their energy output and system lifespan.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <section class="container cta-section">
+            <h2>Have a Project in Mind?</h2>
+            <p>Let's discuss how we can bring your vision for clean energy to life.</p>
+            <a href="contact.html" class="cta-button">Get in Touch</a>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="IMG-20250906-WA0001.jpg" alt="Greentech Power Solutions Logo">
+        </div>
+        <p>Illuminating Futures With Renewable Energy. Proudly serving our communities with top-quality solar installations and exceptional customer service.</p>
+        <div class="footer-contact">
+            <div class="contact-item">
+                <strong>Address:</strong><br> Madhi Colony, Chaurash, Tehri Garhwal, Uttarakhand, India
+            </div>
+            <div class="contact-item">
+                <strong>Contact:</strong><br> 
+                <a href="tel:+919720716581">+91 9720716581</a><br>
+                <a href="tel:+918126773275">+91 8126773275</a>
+            </div>
+            <div class="contact-item">
+                <strong>Email:</strong><br> 
+                <a href="mailto:solar@greentechpowersolutioncom.com">solar@greentechpowersolutioncom.com</a>
+            </div>
+        </div>
+        <p class="copyright">&copy; 2025 Greentech Power Solutions. All Rights Reserved.</p>
+    </footer>
+
+<!-- JAVASCRIPT FOR MOBILE MENU -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            
+            if (navLinks.classList.contains('nav-active')) {
+                navToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
+            } else {
+                navToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`;
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+

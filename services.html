@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Greentech Power Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-green: #6ECB43;
+            --brand-orange: #F58634;
+            --brand-blue: #0072BB;
+            --dark-text: #2c3e50;
+            --light-text: #ffffff;
+            --background-light: #f9fafb;
+            --background-white: #ffffff;
+            --border-color: #e5e7eb;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.8; background-color: var(--background-light); color: var(--dark-text); }
+        .container { max-width: 1200px; margin: auto; padding: 80px 20px; }
+        .page-header { background: var(--brand-blue); color: var(--light-text); padding: 60px 20px; text-align: center; animation: fadeIn 1s ease-in-out; }
+        .page-header h1 { font-size: 3rem; font-weight: 700; }
+        .page-header p { font-size: 1.3rem; max-width: 700px; margin: 10px auto 0; }
+        .header { background: var(--light-text); padding: 15px 0; border-bottom: 1px solid var(--border-color); position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .nav { max-width: 1200px; margin: auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo img { height: 60px; width: auto; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-link a { text-decoration: none; color: var(--dark-text); font-weight: 600; padding: 5px 0; position: relative; transition: color 0.3s ease; }
+        .nav-link a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 50%; transform: translateX(-50%); background-color: var(--brand-orange); transition: width 0.3s ease; }
+        .nav-link a:hover, .nav-link a.active { color: var(--brand-blue); }
+        .nav-link a:hover::after, .nav-link a.active::after { width: 100%; }
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; z-index: 1001; }
+        .nav-toggle svg { width: 30px; height: 30px; }
+        .service-detail-section { padding: 80px 40px; background-color: #ffffff; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 40px; }
+        .service-detail-section:last-of-type { margin-bottom: 0; }
+        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; direction: ltr; }
+        .service-text h2 { font-size: 2.4rem; color: var(--brand-blue); margin-bottom: 20px; }
+        .service-text p { margin-bottom: 20px; }
+        .service-text ul { list-style: none; margin-top: 20px; padding-left: 0; }
+        .service-text li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+        .service-text li::before { content: '✔'; color: var(--brand-green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+        .service-image img { width: 100%; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .cta-section { text-align: center; background-color: var(--background-white); padding: 60px 40px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .cta-section h2 { font-size: 2.4rem; margin-bottom: 20px; color: var(--brand-blue); }
+        .cta-button { background: var(--brand-orange); color: var(--light-text); padding: 22px 50px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.2rem; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(245, 134, 52, 0.4); border: none; cursor: pointer; display: inline-block; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(245, 134, 52, 0.6); }
+        .footer { background-color: var(--dark-text); color: #bdc3c7; padding: 60px 20px; text-align: center; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+        .footer-logo img { height: 70px; margin-bottom: 20px; }
+        .footer p { max-width: 600px; margin: 0 auto 20px; }
+        .footer-contact { display: flex; justify-content: center; gap: 40px; margin: 30px 0; flex-wrap: wrap; text-align: left; }
+        .contact-item { max-width: 280px; }
+        .contact-item a { color: var(--brand-orange); text-decoration: none; transition: text-decoration 0.3s ease; }
+        .contact-item a:hover { text-decoration: underline; }
+        .footer .copyright { margin-top: 30px; border-top: 1px solid #34495e; padding-top: 20px; font-size: 0.9rem; }
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 300px; background: var(--background-white); flex-direction: column; justify-content: center; align-items: center; gap: 40px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: right 0.4s ease-in-out; z-index: 1000; }
+            .nav-links.nav-active { right: 0; }
+            .nav-toggle { display: block; }
+            .page-header h1 { font-size: 2.5rem; }
+            .service-grid { grid-template-columns: 1fr; }
+            .service-detail-section:nth-child(even) .service-grid { direction: ltr; }
+            .service-image { grid-row: 1; margin-bottom: 30px; }
+            .footer-contact { flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <img src="IMG-20250906-WA0001.jpg" alt="Greentech Power Solutions Logo">
+        </a>
+        <ul class="nav-links">
+            <li class="nav-link"><a href="index.html">Home</a></li>
+            <li class="nav-link"><a href="about.html">About Us</a></li>
+            <li class="nav-link"><a href="services.html" class="active">Services</a></li>
+            <li class="nav-link"><a href="projects.html">Projects</a></li>
+            <li class="nav-link"><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-toggle" aria-label="Open menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+        </button>
+    </nav>
+</header>
+
+<main>
+    <section class="page-header">
+        <h1>Our Solar Services</h1>
+        <p>Tailored solar solutions designed for maximum efficiency and return on investment.</p>
+    </section>
+
+    <div class="container">
+
+        <section class="service-detail-section">
+            <div class="service-grid">
+                <div class="service-text">
+                    <h2>Residential Solar</h2>
+                    <p>Empower your home with the clean, renewable energy of the sun. Our residential solar solutions are custom-designed to fit your roof, energy needs, and budget. Take the first step towards energy independence and watch your monthly electricity bills shrink.</p>
+                    <ul>
+                        <li>Significantly reduce or eliminate your electricity bills</li>
+                        <li>Increase the market value of your property</li>
+                        <li>Protect yourself from rising energy costs in the future</li>
+                        <li>Reduce your household's carbon footprint</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.pexels.com/photos/159397/solar-panel-roof-energy-solar-energy-159397.jpeg" alt="Solar panels installed on a modern residential house roof.">
+                </div>
+            </div>
+        </section>
+
+        <section class="service-detail-section">
+            <div class="service-grid">
+                <div class="service-text">
+                    <h2>Commercial & Industrial Solar</h2>
+                    <p>For businesses, solar energy is a strategic investment in sustainability and financial stability. We provide robust, large-scale solar installations for commercial buildings, factories, and institutions. Lower your operating overhead, take advantage of tax benefits, and showcase your company's commitment to the environment.</p>
+                    <ul>
+                        <li>Drastically cut operational costs with lower energy bills</li>
+                        <li>Benefit from accelerated depreciation and other tax incentives</li>
+                        <li>Enhance your brand's image as a green, sustainable business</li>
+                        <li>Secure a predictable, low-cost energy source for decades</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.pexels.com/photos/433309/pexels-photo-433309.jpeg" alt="A large array of solar panels on the flat roof of a commercial building.">
+                </div>
+            </div>
+        </section>
+
+        <section class="service-detail-section">
+            <div class="service-grid">
+                <div class="service-text">
+                    <h2>Battery Storage Solutions</h2>
+                    <p>Don't let blackouts disrupt your life or business. Our advanced battery storage systems store the excess solar energy you generate during the day, providing you with a reliable, uninterrupted power supply 24/7. Achieve true energy independence and peace of mind.</p>
+                    <ul>
+                        <li>Enjoy seamless backup power during grid outages</li>
+                        <li>Maximize your solar investment by using stored energy at night</li>
+                        <li>Reduce your reliance on the traditional power grid</li>
+                        <li>Optimize energy usage for further cost savings</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.pexels.com/photos/8961343/pexels-photo-8961343.jpeg" alt="Modern home battery storage units mounted on a wall.">
+                </div>
+            </div>
+        </section>
+
+        <section class="service-detail-section">
+            <div class="service-grid">
+                <div class="service-text">
+                    <h2>Operations & Maintenance</h2>
+                    <p>Protect your solar investment for the long term. Our O&M services cater to pre-installed solar plants, ensuring they continue to operate at peak performance. From regular cleaning to proactive monitoring and repairs, we keep your system efficient and reliable.</p>
+                    <ul>
+                        <li>Proactive system monitoring to detect issues early</li>
+                        <li>Scheduled panel cleaning to maximize energy generation</li>
+                        <li>Comprehensive diagnostics and performance optimization</li>
+                        <li>Extend the lifespan and efficiency of your solar assets</li>
+                    </ul>
+                </div>
+                <div class="service-image">
+                    <img src="https://images.pexels.com/photos/4148673/pexels-photo-4148673.jpeg" alt="A technician performing maintenance checks on a solar panel array.">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="container cta-section">
+        <h2>Ready to Make the Switch?</h2>
+        <p>Our team is ready to help you begin your journey to clean, affordable energy.</p>
+        <a href="contact.html" class="cta-button">Request a Free Consultation</a>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-logo">
+        <img src="IMG-20250906-WA0001.jpg" alt="Greentech Power Solutions Logo">
+    </div>
+    <p>Illuminating Futures With Renewable Energy. Proudly serving our communities with top-quality solar installations and exceptional customer service.</p>
+    <div class="footer-contact">
+        <div class="contact-item">
+            <strong>Address:</strong><br>
+            Madhi Colony, Chaurash, Tehri Garhwal, Uttarakhand, India
+        </div>
+        <div class="contact-item">
+            <strong>Contact:</strong><br>
+            <a href="tel:+919720716581">+91 9720716581</a><br>
+            <a href="tel:+918126773275">+91 8126773275</a>
+        </div>
+        <div class="contact-item">
+            <strong>Email:</strong><br>
+            <a href="mailto:solar@greentechpowersolutioncom.com">solar@greentechpowersolutioncom.com</a>
+        </div>
+    </div>
+    <p class="copyright">
+        &copy; 2025 Greentech Power Solutions. All Rights Reserved.
+    </p>
+</footer>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+            
+            if (navLinks.classList.contains('nav-active')) {
+                navToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>`;
+            } else {
+                navToggle.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>`;
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
